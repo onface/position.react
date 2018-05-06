@@ -4,7 +4,7 @@ class Basic extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            height:0
+            height:20
         }
         const self = this
         setTimeout(function callee () {
@@ -24,11 +24,14 @@ class Basic extends React.Component {
                         return self.refs.root
                     }}
                     baseOn={{
-                        target: 'left bottom'
+                        target: 'left bottom',
+                        el: 'left top'
                     }}
-                    onAlign={function(position, el, target, offsetParent) {
-                        position.top = position.top + 10
-                        return position
+                    onPosition={function(position, el, target, offsetParent) {
+                        return {
+                            x: 0,
+                            y: 0
+                        }
                     }}
                 >
                     <div style={{width: 100, height:100, background: "pink", opacity: .8}} ></div>
