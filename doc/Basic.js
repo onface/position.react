@@ -4,7 +4,7 @@ class Basic extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            height:0
+            height:20
         }
         const self = this
         setTimeout(function callee () {
