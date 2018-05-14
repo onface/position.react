@@ -17,22 +17,25 @@ class Basic extends React.Component {
     render () {
         const self = this
         return (
-            <div ref="root" style={{position: 'relative', border: '1px solid blue'}} >
+            <div ref={(node) => {
+                self.$refs = self.$refs || {}
+                self.$refs.root = node
+            }} style={{position: 'relative', border: '1px solid blue'}} >
                 <div style={{height: self.state.height}} >abcdef</div>
                 <Position
-                    target={function() {
-                        return self.refs.root
-                    }}
-                    baseOn={{
-                        target: 'left bottom'
-                    }}
-                    onAlign={function(position, el, target, offsetParent) {
-                        position.top = position.top + 10
-                        return position
-                    }}
-                >
-                    <div style={{width: 100, height:100, background: "pink", opacity: .8}} ></div>
-                </Position>
+                   target={function() {
+                       return self.$refs.root
+                   }}
+                   baseOn={{
+                       target: 'left bottom'
+                   }}
+                   onAlign={function(position, el, target, offsetParent) {
+                       position.top = position.top + 10
+                       return position
+                   }}
+               >
+                   <div style={{width: 100, height:100, background: "pink", opacity: .8}} ></div>
+               </Position>
             </div>
         )
     }
